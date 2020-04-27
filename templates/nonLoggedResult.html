@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RESULTS | ANONYMOUS</title>
+</head>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+
+<body>
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>Marks</th>
+        </tr>
+        {% for items in data %}
+        <tr>
+
+            <td>{{items[0]}}</td>
+            <td>{{items[1]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

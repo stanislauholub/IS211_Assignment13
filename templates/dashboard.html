@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DASHBOARD</title>
+</head>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    .column {
+      float: left;
+      width: 33.33%;
+    }
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <h2>Student</h2>
+            <table style="width:90%" method="GET" action="/dashboard">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in data %}
+                <tr>
+                    <td><a href="/student/{{item[0]}}">{{item[0]}}</a> </td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>
+                        <form action="/deleteStudent" method="post">
+                            <input type="hidden" name="std_id" value={{item[0]}}>
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                    </td>
+                    {% endfor %}
+                </tr>
+
+            </table>
+        </div>
+        <div class="column">
+            <h2>Quiz</h2>
+            <table style="width:90%" method="GET">
+                <tr>
+
+                    <th>ID</th>
+                    <th>Subject</th>
+                    <th>No. of Questions</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in data2 %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>
+                        <form action="/deleteQuiz" method="post">
+                            <input type="hidden" name="quiz_id" value={{item[0]}}>
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
+                    </td>
+                    {% endfor %}
+                </tr>
+
+            </table>
+        </div>
+        <div class="column">
+            <h2>Operations</h2>
+            <form>
+                <a href="/student/add">Add Student</a>
+            </form><br>
+            <form>
+                <a href="/quiz/add">Add Quiz</a>
+            </form>
+            <br>
+            <form>
+                <a href="/results/add">Add Quiz Result</a>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>

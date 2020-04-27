@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QUIZ RESULTS</title>
+</head>
+
+<body>
+    <style>
+        table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+    }
+    </style>
+    <table>
+        <tr>
+            <th>Quiz ID</th>
+            <th>Quiz Date</th>
+            <th>Subject</th>
+            <th>Marks</th>
+            <th>Action</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td>
+                <form action="/deleteResult" method="post">
+                    <input type="hidden" name="res_id" value={{item[4]}}>
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
